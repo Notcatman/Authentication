@@ -67,5 +67,5 @@
 <br><br><br><br><br>
 
 
-<code style="color: aqua ;">ok</code>
+<h1 style="color : Fuchsia">text</h1>
 <img src = 'https://i.pinimg.com/736x/06/c2/66/06c266e681339abd9a36739698c2cb56.jpg'>
