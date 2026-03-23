@@ -67,5 +67,5 @@
 <br><br><br><br><br>
 
 
-<span style="color: aqua ;">ok</span>
+<code style="color: aqua ;">ok</code>
 <img src = 'https://i.pinimg.com/736x/06/c2/66/06c266e681339abd9a36739698c2cb56.jpg'>
