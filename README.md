@@ -67,5 +67,5 @@
 <br><br><br><br><br>
 
 
-<h1 style="font-size: 56px;">ok</h1>
-<img src = 'https://i.pinimg.com/736x/06/c2/66/06c266e681339abd9a36739698c2cb56.jpg'>
+<h1>ok</h1>
+<img src = 'https://i.pinimg.com/originals/96/24/2c/96242c142ff4426682f63d1bf63515ac.gif'>
