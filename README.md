@@ -72,8 +72,8 @@
 
 <h1>ok</h1>
 <h1>
-  <a href='https://youtu.be/dQw4w9WgXcQ?list=RDEMt6MUSQI0t_Ts2EDUDWGRhQ&t=43'>
+  <a href='https://youtu.be/j5a0jTc9S10?t=43'>
   click to scroll up ↑
   </a>
 </h1>
-<img src = 'https://youtu.be/j5a0jTc9S10?t=43'>
+<img src = 'https://i.pinimg.com/originals/96/24/2c/96242c142ff4426682f63d1bf63515ac.gif'>
