@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Login....{% endblock %}</title>
+    {% block icon %}<link rel="icon" href="/static/images/ok.png">{% endblock %}
+
+</head>
+<style>
+
+    @font-face {
+        font-family: hello;
+        src: url(/static/fonts/SemiBold.otf);
+    }
+    @font-face {
+        font-family: hi;
+        src: url(/static/fonts/consolas.ttf);
+    }
+
+    @keyframes aaa {
+    0% {
+        transform: translateX(0) rotate(5deg);
+    
+    }
+    50% {
+        transform: translateX(50px) rotate(-5deg);
+
+    }
+    100% {
+        transform: translateX(0) rotate(5deg);
+        
+    }
+}
+
+    @keyframes opacity {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+
+    a{
+        text-decoration: none;
+        color: hsl(22, 94%, 43%);
+    }
+
+    *::selection{
+        background-color: hsl(323, 71%, 50%);
+    }
+
+    body{
+        background: linear-gradient(90deg, hsla(49, 57%, 89%, 0.813), hsla(191, 39%, 89%, 0.676));
+        animation: opacity 1.5s ease;
+    }
+    
+    .form-container {
+
+        margin: 130px auto;
+        padding: 20px;
+        max-width: 470px; 
+         
+        font-family: hello; 
+        border: 3px solid hsla(0, 0%, 0%, 0.426);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        margin-bottom: 20px;
+        
+        background: linear-gradient(90deg, hsla(0, 0%, 96%, 0.806), hsla(0, 0%, 93%, 0.829));
+    }
+
+    .form-container h1{
+        font-size: 35px;
+        color: hsl(208, 73%, 20%);
+    }
+
+    
+
+    .form-group label {
+        font-family: hi;
+        font-size: 21px;
+        font-weight: 600;
+        color: hsl(0, 0%, 20%);
+    }
+
+    
+    .form-group input {
+        width: 100%; 
+        padding: 12px 15px;
+        font-size: 19px; 
+        font-weight: 600;
+        font-family: hi; 
+        border: 2px dashed hsla(0, 0%, 62%, 0.72);
+        border-radius: 6px;
+        box-sizing: border-box; 
+        transition: 0.3s ease;
+        margin-top: 8px;
+        margin-bottom: 8px;
+
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: hsl(182, 37%, 67%);
+        width: 101%;
+        transition: 0.3s ease;
+        /* box-shadow: 0 0 5px hsla(241, 84%, 65%, 0.2); */
+    }
+
+    .form-btn{
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+    }
+    
+
+    button { 
+        display: inline-block;
+        background-color: hsla(0, 0%, 78%, 0.969);
+        color: hsla(0, 4%, 11%, 0.693);
+        font-family: hello;
+        letter-spacing: 1px;
+        font-size: 24px;
+        font-weight: 500;
+        padding: 10px 30px;
+        border: 2px groove hsla(0, 0%, 28%, 0.169);
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        margin-top: 24px;
+        margin-bottom: 15px;
+    }
+
+    button:hover {
+        /* scale: 1.1; */
+        /* rotate:1deg; */
+        transform: translateY(-3px);
+        letter-spacing: 4px;
+        /* letter-spacing: 1px; */
+        background: hsl(10, 100%, 53%);
+        border: 2px groove hsla(0, 0%, 0%, 0.422);
+        color: hsl(0, 0%, 86%);
+        border-radius: 1px;
+        transition: 0.3s ease;
+        cursor: pointer;
+    }
+
+    .boo {
+        height: 348px;
+        position: absolute; 
+        bottom: 30px;          
+        left: 40px;       
+
+        animation: aaa 5s ease-in-out infinite;
+        z-index: 10;        
+    }
+
+    .back {
+        font-family: hello;
+        font-size: large;
+        margin-left: 15px;
+        margin-top: 10px;
+        transition: 0.5s ease;
+    }
+
+    .back:hover{
+        transform: translateX(4px);
+        transition: 0.5s ease;
+    }
+</style>
+<body>
+
+    <div class="back">
+        <a href="{% url 'home' %}">
+          <h3>
+            ⬅Back home
+          </h3>  
+        </a>
+    </div>
+
+    
+    <div class="form-container">
+        {% if user.is_authenticated %}
+            <h1>HAHA, no lol :)</h1>
+
+            {% else %}
+            <h1>Login</h1>
+
+                {% if form.non_field_errors %}
+                    <div class="error-banner" style="color: hsl(0, 100%, 50%); margin-bottom: 15px; font-weight: 600;">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            
+                            {{ field }}
+
+                            {% if field.errors %}
+                                <p style="color: hsl(0, 100%, 50%); font-size: 13px; margin-top: 5px;">
+                                    {{ field.errors.as_text }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <div class="form-btn">
+                        <button type="submit">Login</button>
+                    </div>
+
+                        
+                    {% endif %}
+                </form>
+        
+    </div>
+
+        <img
+        class="boo" 
+        src="/static/images/monster3.png">
+    
+</body>
+</html>

@@ -1,0 +1,232 @@
+
+<title>{% block title %}Register..{% endblock %}</title>
+{% block icon %}<link rel="icon" href="/static/images/ok.png">{% endblock %}
+
+<style>
+
+    @font-face {
+        font-family: hello;
+        src: url(/static/fonts/SemiBold.otf);
+    }
+    @font-face {
+        font-family: hi;
+        src: url(/static/fonts/consolas.ttf);
+    }
+
+    @keyframes aaa {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(1deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+    @keyframes opacity {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+
+    a{
+        text-decoration: none;
+        color: hsl(269, 61%, 37%);
+    }
+
+    *::selection{
+        background-color: hsl(323, 71%, 50%);
+    }
+
+    body{
+        background: linear-gradient(90deg, hsla(327, 81%, 90%, 0.537), hsla(0, 0%, 68%, 0.433));
+        animation: opacity 1.5s ease;
+    }
+
+
+    .errorlist { 
+        color: hsl(0, 100%, 50%); 
+        list-style-type: none; 
+        padding: 0; 
+    }
+    .form-container { 
+        /* display: flex; */
+        /* justify-content: center; */
+        /* text-align: center; */
+        padding: 20px;
+        max-width: 470px; 
+        margin: 80px auto; 
+        font-family: hello; 
+        border: 3px solid hsla(0, 0%, 0%, 0.426);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        margin-bottom: 20px;
+        width: 100%;
+        background: linear-gradient(90deg, hsla(0, 0%, 96%, 0.806), hsla(0, 0%, 93%, 0.829));
+    }
+
+    .form-container h1{
+        text-align: center;
+        font-size: 35px;
+        color: hsl(208, 73%, 20%);
+        letter-spacing: 1px;
+    }
+    button { 
+        display: inline-block;
+        background-color: hsla(0, 0%, 78%, 0.969);
+        color: hsla(0, 4%, 11%, 0.693);
+        font-family: hello;
+        letter-spacing: 1px;
+        font-size: 24px;
+        font-weight: 500;
+        padding: 10px 30px;
+        border: 2px groove hsla(0, 0%, 28%, 0.169);
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+    }
+
+    button:hover {
+        /* scale: 1.1; */
+        /* rotate:1deg; */
+        transform: translateY(-3px);
+        letter-spacing: 4px;
+        /* letter-spacing: 1px; */
+        background: hsl(182, 37%, 67%);
+        border: 2px groove hsla(0, 0%, 0%, 0.422);
+        color: hsla(0, 0%, 11%, 0.793);
+        border-radius: 1px;
+        transition: 0.3s ease;
+        cursor: pointer;
+    }
+
+
+    .form-group label {
+        font-family: hi;
+        font-size: 21px;
+        font-weight: 600;
+        color: hsl(0, 0%, 20%);
+        /* margin-bottom: 8px; */
+    
+    }
+
+
+    .form-group input {
+        width: 100%; 
+        padding: 12px 15px;
+        font-size: 19px; 
+        font-weight: 600;
+        font-family: hi; 
+        border: 2px dashed hsla(0, 0%, 62%, 0.72);
+        border-radius: 6px;
+        box-sizing: border-box; 
+        transition: 0.3s ease;
+        margin-top: 8px;
+        margin-bottom: 8px;
+
+    }
+
+    
+    .form-group input:focus {
+        outline: none;
+        border-color: hsl(333, 84%, 65%);
+        width: 101%;
+        transition: 0.3s ease;
+        /* box-shadow: 0 0 5px hsla(241, 84%, 65%, 0.2); */
+    }
+
+    .form-btn{
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .pp{
+        font-size: 19px;
+        color: hsl(208, 73%, 20%);
+    }
+
+    .boo {
+        height: 348px;
+        position: absolute; 
+        bottom: 30px;          
+        left: 40px;       
+
+        animation: aaa 5s ease-in-out infinite;
+        z-index: 10;        
+    }
+
+    .back {
+        font-family: hello;
+        font-size: large;
+        margin-left: 15px;
+        margin-top: 10px;
+        transition: 0.5s ease;
+    }
+
+    .back:hover{
+        transform: translateX(4px);
+        transition: 0.5s ease;
+    }
+
+</style>
+
+<body>
+
+    <div class="back">
+        <a href="{% url 'home' %}">
+          <h3>
+            ⬅Go back
+          </h3>  
+        </a>
+    </div>
+
+
+    <div class="form-container">
+        {% if user.is_authenticated %}
+        <h1>Why did you enter "register" in the url =(</h1>
+    
+            <a href="https://www.youtube.com/watch?v=j5a0jTc9S10&t" target="_blank" rel="noopener noreferrer" class="btn1"
+            style="font-size: 24px; text-decoration: underline;">
+                <h3>Back home</h3>
+            </a>
+        
+
+        {% else %}
+        <h1>Create account</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="form-group">
+                    <label>{{ field.label }}</label>
+                    {{ field }} {% if field.errors %}
+                        <p style="color: hsl(0, 100%, 50%);">{{ field.errors.as_text }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            
+            <div class="form-btn">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+
+        <p class="pp">Already have an account? <a href="{% url 'login' %}">Log in here</a></p>
+        {% endif %}
+
+    </div>
+
+        <img
+        class="boo" 
+        src="/static/images/monster1.png">
+
+</body>
+</html>

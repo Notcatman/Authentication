@@ -1,0 +1,191 @@
+
+    {% extends 'base.html' %}
+    <title>{% block title %}Page{% endblock %}</title>
+    {% block icon %}<link rel="icon" href="/static/images/ok.png">{% endblock %}
+
+    {% block extra_style %}
+    <style>
+
+        @font-face {
+        font-family: hello;
+        src: url(/static/fonts/SemiBold.otf);
+    }
+
+    @keyframes aaa {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+    50% {
+        transform: translateX(-40px) rotate(-5deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+}
+
+    @keyframes opacity {
+        0%{
+            transform: translateY(-20px);
+            opacity: 0;
+
+
+        }
+        100%{
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+
+    a{
+        text-decoration: none;
+        color: hsl(3, 77%, 35%);
+    }
+
+    *::selection{
+        background-color: hsl(323, 71%, 50%);
+    }
+
+    body{
+        background: linear-gradient(90deg, hsla(316, 70%, 87%, 0.537), hsla(53, 82%, 72%, 0.532));
+        animation: opacity 1.5s ease;
+    }
+
+
+
+    .dv {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        margin-top: 110px;
+        gap: 30px;
+    }
+
+    
+    .btn {
+        display: inline-block;
+        background-color: hsla(0, 0%, 78%, 0.969);
+        color: hsla(0, 4%, 11%, 0.693);
+        text-decoration: none; 
+        padding: 10px 30px;
+        border: 2px groove hsla(0, 0%, 28%, 0.169);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn h3 {
+        margin: 0;
+        font-size: 30px;
+        font-weight: 500;
+        font-family: hello;
+        
+    }
+    .btn:hover {
+        
+            transform: translateY(-5px);
+            background: hsl(336, 82%, 34%);
+            color: hsl(0, 0%, 100%);
+            border-radius: 1px;
+            letter-spacing: 1px;
+            transition: 0.3s ease;
+    }
+
+    .btn1 {
+        display: inline-block;
+        background-color: hsla(0, 0%, 78%, 0.969);
+        color: hsla(0, 4%, 11%, 0.693);
+        text-decoration: none; 
+        padding: 10px 30px;
+        border: 2px dashed hsla(0, 0%, 28%, 0.799);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn1 h3 {
+        margin: 0;
+        font-size: 30px;
+        font-weight: 500;
+        font-family: hello;
+        
+    }
+    .btn1:hover {
+        
+        transform: translateY(10px) rotateZ(-10deg);
+        background: hsl(277, 82%, 34%);
+        color: hsl(0, 0%, 100%);
+        border-radius: 1px;
+        letter-spacing: 2px;
+        transition: 0.3s ease;
+    }
+
+
+    .na{
+        font-family: hello;
+        text-align: center;
+        font-size: 30px;
+        color: hsl(208, 73%, 20%);
+        letter-spacing: 1px;
+    }
+
+    .na h2{
+        margin-top: 180px;
+    }
+
+    .na h2:hover{
+        cursor:default;
+    }
+
+    .moo{
+        height: 348px;
+        float: left;
+        margin-left: 120px;
+        animation: aaa 5s ease-in-out infinite;
+        
+    }
+
+
+    .back {
+        font-family: hello;
+        font-size: large;
+        margin-left: 15px;
+        margin-top: 10px;
+        transition: 0.5s ease;
+    }
+
+    .back:hover{
+        transform: translateX(4px);
+        transition: 0.5s ease;
+    }
+    </style>
+    {% endblock %}
+<body>
+    {% block content %}
+
+    <div class="back">
+        <a href="{% url 'home' %}">
+          <h3>
+            ⬅Back home
+          </h3>  
+        </a>
+    </div>
+
+
+    
+    <h1 style="font-family: hello; text-align: center; color: hsl(209, 64%, 27%); font-size: 41px; margin-top: 200px;">Hey <span style="color: hsl(208, 75%, 22%); background-color: rgba(210, 49, 116, 0.541);">{{ user.username }}</span>, you are here :)</h1>
+
+    <div class="dv">
+        <a href="{% url 'logout' %}" class="btn">
+            <h3>Logout</h3>
+        </a>
+        
+        <a href="https://www.youtube.com/watch?v=j5a0jTc9S10&t" target="_blank" rel="noopener noreferrer" class="btn1">
+            <h3>Settings</h3>
+        </a>
+
+    </div>
+
+        <img
+        class="moo" 
+        src="/static/images/monster4.png">
+    {% endblock %}
+</body>
+</html>

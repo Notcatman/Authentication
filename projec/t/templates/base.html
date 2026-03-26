@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HHHHHome.....{% endblock %}</title>
+    {% block icon %}<link rel="icon" href="/static/images/no.png">{% endblock %}
+</head>
+{% block extra_style %}
+<style>
+
+    @font-face {
+        font-family: hello;
+        src: url(/static/fonts/SemiBold.otf);
+    }
+
+    @keyframes aaa {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+    50% {
+        transform: translateX(-40px) rotate(-5deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+}
+
+    @keyframes opacity {
+        0%{
+            transform: translateY(-20px);
+            opacity: 0;
+
+
+        }
+        100%{
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    *::selection{
+        background-color: hsl(323, 71%, 50%);
+    }
+
+    body{
+        background: linear-gradient(90deg, hsla(316, 70%, 87%, 0.537), hsla(53, 82%, 72%, 0.532));
+        animation: opacity 1.5s ease;
+    }
+
+
+
+    .dv {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        margin-top: 110px;
+    }
+
+    
+    .btn {
+        display: inline-block;
+        background-color: hsla(0, 0%, 78%, 0.969);
+        color: hsla(0, 4%, 11%, 0.693);
+        text-decoration: none; 
+        padding: 10px 30px;
+        border: 2px groove hsla(0, 0%, 28%, 0.169);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn h3 {
+        margin: 0;
+        font-size: 30px;
+        font-weight: 500;
+        font-family: hello;
+        
+    }
+
+    .btn:hover {
+        scale: 1.1;
+        rotate:-2deg;
+        /* letter-spacing: 1px; */
+        background: hsl(209, 81%, 34%);
+        color: hsl(0, 0%, 100%);
+        border-radius: 1px;
+        transition: 0.3s ease;
+    }
+
+
+    
+    /* .btn:active {
+        transform: translateY(0);
+    } */    
+
+    .na{
+        font-family: hello;
+        text-align: center;
+        font-size: 30px;
+        color: hsl(208, 73%, 20%);
+        letter-spacing: 1px;
+    }
+
+    .na h2{
+        margin-top: 180px;
+    }
+
+    .na h2:hover{
+        cursor:default;
+    }
+
+    .moo{
+        height: 348px;
+        float: right;
+        margin-right: 120px;
+        animation: aaa 5s ease-in-out infinite;
+        
+    }
+
+</style>
+{% endblock %}
+<body>
+
+    {% block content %}
+        <div class="na">
+            {% if user.is_authenticated %}
+                <h2>
+                    Yo <span style="color: hsl(208, 75%, 22%); background-color: rgba(210, 49, 116, 0.541);">{{ user.username }}</span>, click on button below to access...
+                </h2>
+            {% else %}
+                <h2>
+                    Click on button below to Register and access...
+                </h2>
+            {% endif %}
+        </div>
+
+        <div class="dv">
+            {% if user.is_authenticated %}
+            <a href="{% url 'access' %}" class="btn">
+
+                <h3>
+                    Access
+                </h3>
+            </a>
+
+            {% else %}
+            <a href="{% url 'register' %}" class="btn">
+
+                <h3>
+                    Register
+                </h3>
+            </a>
+            {% endif %}
+        </div>
+
+        <img
+        class="moo" 
+        src="/static/images/monster.png">
+
+    {% endblock %}
+</body>
+</html>
